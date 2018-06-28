@@ -1,0 +1,7 @@
+.tombol{
+	min-width: 60px;
+	float: right;
+}
+.tombol:disabled{
+	opacity: 0.3;
+}

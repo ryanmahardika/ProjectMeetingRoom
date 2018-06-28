@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <title>Meeting Room</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css"/>
+  <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css"/>
+  <link rel="stylesheet" href="dist/css/AdminLTE.css"/>
+  <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css"/>
+  <link rel="stylesheet" href="bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css"/>
+  <link rel="stylesheet" href="bower_components/bootstrap-daterangepicker/daterangepicker.css"/>
+  <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css"/>
+  <link href="img/favorite.png" rel="shortcut icon"/>
+  <link rel="stylesheet" href="bower_components/select2/dist/css/select2.css"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"/>
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+  <header th:include="header">
+  </header>
+
+ <aside class="main-sidebar">
+    <section class="sidebar">
+      <ul class="sidebar-menu"><br/><br/>
+        <li class="header" style="font-size: 20px; text-align: center;"><Strong>MENU UTAMA</Strong></li><br/>
+        <li class="active">
+          <a th:href="@{jadwalruanganuser}">
+            <i class="ion ion-calendar"></i>
+            &nbsp; &nbsp;<span>Jadwal Ruangan</span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a th:href="@{ruangan}">
+            <i class="ion ion-filing"></i>
+            &nbsp; &nbsp;<span>Data Ruangan</span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a th:href="@{daftar}">
+            <i class="ion ion-compose"></i>
+            &nbsp; &nbsp;<span>Daftar Pengajuan</span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a th:href="@{histori}">
+            <i class="ion ion-stats-bars"></i>
+            &nbsp; &nbsp;<span>Histori Pemakaian</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+  </aside>
+
+  <div class="content-wrapper">
+     <div class="row">
+        <div class="col-lg-3 col-xs-6">
+        </div>
+        <div class="col-lg-6 col-xs-6">
+          <section class="content-header">
+          <h1 style="text-align: center;">
+            Form Pengajuan
+          </h1>
+          </section><br/>
+        </div>
+        <div class="col-lg-3 col-xs-6">
+          <section class="content-header">
+            <ol class="breadcrumb">
+              <li><a th:href="@{home}"><i class="ion ion-home"></i> Home</a></li>
+              <li class="active">Form Pengajuan</li>
+            </ol>
+          </section>
+        </div>
+      </div>
+    <section class="content">
+      <div class="row">
+        <div class="col-lg-2 col-xs-6">
+        </div>
+        <div class="col-lg-8 col-xs-6">
+          <div class="box box-primary">
+            <form id="form" role="form" th:action="@{pengajuan}" method="post">
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="exampleRuangan">Ruangan</label>
+                  <select name="ruangan" id="exampleNamaRuangan" class="form-control" style="max-width: 30%">
+                  	<option th:each="ruangan : ${listruangan}" th:value="${ruangan.id}" th:text="${ruangan.namaRuangan}"></option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="exampleTanggal">Tanggal Pemakaian</label>
+                  <input type="text" name="tanggalPemakaian" id="tglPemakaian" class="form-control" style="max-width: 30%;" required/> 
+                </div>
+                <div class="form-group">
+                  <label for="exampleWaktu">Waktu Pemakaian</label>
+                  <label id="validatetime" style="color:red;"></label><br/>
+                  <select name="mulai" id="mulai" class="form-control" style="display:inline;max-width: 15%;">
+                  	<option th:each="waktu : ${T(com.example.mr.model.PilihWaktu).values()}" th:value="${waktu}" th:text="${waktu}"></option>
+                  </select>
+                  <label style="display:inline;"> &nbsp;s/d&nbsp;</label>
+                  <select name="selesai" id="selesai" class="form-control" style="display:inline;max-width: 15%;">
+                  	<option th:each="waktu : ${T(com.example.mr.model.PilihWaktu).values()}" th:value="${waktu}" th:text="${waktu}"></option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Peserta</label>
+                  <select name="peserta" class="form-control select2 select2-hidden-accessible" multiple="multiple" data-placeholder="Peserta" style="width: 100%;">
+					<option th:each="peserta : ${listpeserta}" th:value="${peserta.id}" th:text="${peserta.nama}"></option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="exampleSubjek">Subjek Meeting</label>
+                  <input class="form-control" type="text" name="subjekMeeting" id="exampleSubjek" required/> 
+                </div>
+                <div class="form-group">
+                  <label for="exampleDeskripsi">Deskripsi</label>
+                  <textarea class="form-control" name="deskripsi" id="exampleDeskripsi" style="max-width: 100%"></textarea> 
+                </div>
+              </div>
+              <div class="box-footer">
+                <button id="cek" type="submit" class="btn btn-fifth btn-flat">Submit</button>&nbsp;&nbsp;
+                <a th:href="@{jadwalruanganuser}" class="btn btn-fifth btn-flat">&nbsp;&nbsp;Batal&nbsp;&nbsp;&nbsp;</a>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-lg-2 col-xs-6">
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer th:include="footer">
+  </footer>
+</div>
+
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
+<script>
+  $.widget.bridge('uibutton', $.ui.button);
+</script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<script src="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script src="dist/js/adminlte.min.js"></script>
+<script src="bower_components/select2/dist/js/select2.full.js"></script>
+<script>
+$('#tglPemakaian').datepicker({
+    daysOfWeekDisabled: [0,6]
+});
+</script>
+<script>
+$(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+});
+</script>
+<script>
+$(document).ready(function($){
+	$("#form").submit(function(event) {
+	    event.preventDefault();
+	});
+	$("#cek").click(function(){
+		var mulai = $("#mulai").val();
+		var selesai = $("#selesai").val();
+		
+		var jamMulai = mulai[0]+mulai[1];
+		var menitMulai = mulai[3]+mulai[4];
+		var jamSelesai = selesai[0]+selesai[1];
+		var menitSelesai = selesai[3]+selesai[4];
+		
+		parseInt(jamMulai);
+		parseInt(jamSelesai);
+		parseInt(menitMulai);
+		parseInt(menitSelesai);
+		
+		if (mulai==selesai){
+			$("#validatetime").text("Waktu mulai dan selesai tidak boleh sama");
+		}else if(jamSelesai<jamMulai){
+			$("#validatetime").text("Waktu selesai tidak boleh lebih awal dari waktu mulai");
+		}
+		else if (jamMulai == jamSelesai && menitMulai > menitSelesai){
+			$("#validatetime").text("Waktu selesai tidak boleh lebih awal dari waktu mulai");
+		}
+		else{
+			$("#form").unbind("submit").submit();
+		};
+	});
+});
+</script>
+
+</body>
+</html>

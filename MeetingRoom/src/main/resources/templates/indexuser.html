@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <title>Meeting Room</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css"/>
+  <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css"/>
+  <link rel="stylesheet" href="dist/css/AdminLTE.css"/>
+  <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css"/>
+  <link rel="stylesheet" href="bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css"/>
+  <link rel="stylesheet" href="bower_components/bootstrap-daterangepicker/daterangepicker.css"/>
+  <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css"/>
+  <link href="img/favorite.png" rel="shortcut icon"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"/>
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+  <header th:include="header">
+  </header>
+
+  <aside class="main-sidebar">
+    <section class="sidebar">
+      <ul class="sidebar-menu"><br/><br/>
+        <li class="header" style="font-size: 20px; text-align: center;"><Strong>MENU UTAMA</Strong></li><br/>
+        <li>
+          <a th:href="@{jadwalruanganuser}">
+            <i class="ion ion-calendar"></i>
+            &nbsp &nbsp<span>Jadwal Ruangan</span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a th:href="@{ruangan}">
+            <i class="ion ion-filing"></i>
+            &nbsp &nbsp<span>Data Ruangan</span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a th:href="@{daftar}">
+            <i class="ion ion-compose"></i>
+            &nbsp &nbsp<span>Daftar Pengajuan</span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a th:href="@{histori}">
+            <i class="ion ion-stats-bars"></i>
+            &nbsp &nbsp<span>Histori Pemakaian</span>
+          </a>
+        </li>
+    </section>
+  </aside>
+
+  <div class="content-wrapper">
+    <section class="content-header"><br/>
+    </section><br/><br/>
+    <section class="content">
+      <div class="row">
+        <div class="col-lg-3 col-xs-6 ">
+          <div class="small-box bg-yellow">
+            <div class="inner">
+              <br/><br/><br/>
+              <p>Jadwal Ruangan</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-calendar"></i>
+            </div>
+            <a th:href="@{jadwalruanganuser}" class="small-box-footer">Ke Halaman &nbsp<i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-xs-6">
+          <div class="small-box bg-green">
+            <div class="inner">
+              <br/><br/><br/>
+              <p>Data Ruangan</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-filing"></i>
+            </div>
+            <a th:href="@{ruangan}" class="small-box-footer">Ke Halaman &nbsp<i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-xs-6">
+          <div class="small-box bg-red">
+            <div class="inner">
+              <br/><br/><br/>
+              <p>Daftar Pengajuan</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-clipboard"></i>
+            </div>
+            <a th:href="@{daftar}" class="small-box-footer">Ke Halaman &nbsp<i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-xs-6">
+          <div class="small-box bg-green">
+            <div class="inner">
+              <br/><br/><br/>
+              <p>Histori Pemakaian</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-stats-bars"></i>
+            </div>
+            <a th:href="@{histori}" class="small-box-footer">Ke Halaman &nbsp<i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-1 col-xs-6">
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer th:include="footer">
+  </footer>
+
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
+<script>
+  $.widget.bridge('uibutton', $.ui.button);
+</script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<script src="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<script src="dist/js/adminlte.min.js"></script>
+
+</body>
+</html>

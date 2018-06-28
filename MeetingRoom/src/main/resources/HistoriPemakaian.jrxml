@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="HistoriPemakaian" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7a5c9b49-9dc5-422a-ac69-e92cf61ef530">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MeetingRoom"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[SELECT dp.id, k.nama, r.nama_ruangan, dp.tanggal_pemakaian, CONCAT(dp.mulai, " - " ,dp.selesai) as jam_pemakaian, dp.subjek_meeting, dp.status_pengajuan FROM datapengajuan dp, karyawan k, ruangan r WHERE dp.id_karyawan=k.id AND dp.id_ruangan=r.id AND dp.status_pengajuan="Selesai"]]>
+	</queryString>
+	<field name="id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="datapengajuan"/>
+	</field>
+	<field name="nama" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nama"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="karyawan"/>
+	</field>
+	<field name="nama_ruangan" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nama_ruangan"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="ruangan"/>
+	</field>
+	<field name="tanggal_pemakaian" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="tanggal_pemakaian"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="datapengajuan"/>
+	</field>
+	<field name="jam_pemakaian" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="jam_pemakaian"/>
+	</field>
+	<field name="subjek_meeting" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="subjek_meeting"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="datapengajuan"/>
+	</field>
+	<field name="status_pengajuan" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="status_pengajuan"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="datapengajuan"/>
+	</field>
+	<group name="Group1">
+		<groupExpression><![CDATA[$F{id}]]></groupExpression>
+		<groupHeader>
+			<band height="35">
+				<rectangle>
+					<reportElement x="0" y="-10" width="802" height="31" forecolor="#FFFFFF" backcolor="#E1E1D0" uuid="e858281d-97c1-40d2-a979-88bac2e65d19"/>
+				</rectangle>
+				<textField>
+					<reportElement x="12" y="0" width="31" height="22" uuid="2ce185f2-1c0a-4454-b9a6-98d228b76e66"/>
+					<textElement textAlignment="Center">
+						<font fontName="Roboto Condensed"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="69" y="0" width="100" height="22" uuid="43d34ddf-a691-43dc-ba20-37f7dc934b66"/>
+					<textElement textAlignment="Center">
+						<font fontName="Roboto Condensed"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{nama}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="195" y="0" width="100" height="22" uuid="9063642c-2b39-4c27-8632-1ac7aacd3bfb"/>
+					<textElement textAlignment="Center">
+						<font fontName="Roboto Condensed"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{nama_ruangan}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="321" y="0" width="100" height="22" uuid="a14c64bf-5b95-471d-af92-437c1905ec27"/>
+					<textElement textAlignment="Center">
+						<font fontName="Roboto Condensed"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{tanggal_pemakaian}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="448" y="0" width="100" height="22" uuid="81a75e49-667e-4e93-aee7-10727a6d1469"/>
+					<textElement textAlignment="Center">
+						<font fontName="Roboto Condensed"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{jam_pemakaian}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="574" y="0" width="100" height="22" uuid="4324a135-13d8-4c2a-bcda-64df921c014f"/>
+					<textElement textAlignment="Center">
+						<font fontName="Roboto Condensed"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{subjek_meeting}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="696" y="0" width="100" height="22" uuid="a8b92f62-39a1-40b3-a45f-c16e978c4fdc"/>
+					<textElement textAlignment="Center">
+						<font fontName="Roboto Condensed"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{status_pengajuan}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="nama_ruangan">
+		<groupExpression><![CDATA[$F{nama_ruangan}]]></groupExpression>
+	</group>
+	<group name="tanggal_pemakaian">
+		<groupExpression><![CDATA[$F{tanggal_pemakaian}]]></groupExpression>
+	</group>
+	<group name="jam_pemakaian">
+		<groupExpression><![CDATA[$F{jam_pemakaian}]]></groupExpression>
+	</group>
+	<group name="subjek_meeting">
+		<groupExpression><![CDATA[$F{subjek_meeting}]]></groupExpression>
+	</group>
+	<group name="status_pengajuan">
+		<groupExpression><![CDATA[$F{status_pengajuan}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="211" splitType="Stretch">
+			<image>
+				<reportElement x="6" y="0" width="111" height="114" uuid="651ccc4b-e999-40fe-bcbf-1f25bcfc98af"/>
+				<imageExpression><![CDATA["C:/Users/RyanMahardika/Downloads/community-council-logo.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="129" y="33" width="210" height="25" uuid="4df7caff-e1cb-455b-b603-b9df7d6ec097">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Roboto Condensed" size="19" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MeetingRoom]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="129" y="60" width="210" height="15" uuid="3986afce-3588-4377-9434-7de1accedc90"/>
+				<textElement>
+					<font fontName="Roboto Condensed" size="11"/>
+				</textElement>
+				<text><![CDATA[Laporan Histori Pemakaian]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="127" width="802" height="51" forecolor="#FFFFFF" backcolor="#FF9933" uuid="b4f5bf54-47ba-4512-9b20-94c855757666"/>
+			</rectangle>
+			<line>
+				<reportElement x="0" y="121" width="802" height="1" uuid="b57f1971-06ed-4466-9938-253612539cc7"/>
+			</line>
+			<line>
+				<reportElement x="0" y="184" width="802" height="1" uuid="f22c8edd-76a3-4f29-aa01-286ed532fca8"/>
+			</line>
+			<staticText>
+				<reportElement x="602" y="90" width="60" height="15" uuid="e73ecaf5-2720-4fd3-a562-0fcf66f9548c"/>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Center">
+					<font fontName="Roboto Condensed" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tanggal :]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="662" y="90" width="129" height="15" uuid="926a0f60-6b7d-43ab-9723-703a704f5b39"/>
+				<textElement textAlignment="Center">
+					<font fontName="Roboto Condensed" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="82" y="139" width="74" height="13" uuid="0d65fda0-8b28-48ac-82b8-94ac4fdde221"/>
+				<textElement textAlignment="Center">
+					<font fontName="Roboto Condensed" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nama]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="334" y="139" width="75" height="13" uuid="a8cb25d3-73f8-4279-a758-81013ea108a7"/>
+				<textElement textAlignment="Center">
+					<font fontName="Roboto Condensed" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tanggal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="208" y="139" width="75" height="13" uuid="f49e475f-1fc1-4d5c-b4df-abb5fd406fbb"/>
+				<textElement textAlignment="Center">
+					<font fontName="Roboto Condensed" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nama]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="461" y="139" width="75" height="13" uuid="ca839e53-eb13-444f-a7a6-a0b1085b95aa"/>
+				<textElement textAlignment="Center">
+					<font fontName="Roboto Condensed" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jam]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="587" y="139" width="75" height="13" uuid="0aab5fd3-3118-4f0d-866e-54eaa46342e6"/>
+				<textElement textAlignment="Center">
+					<font fontName="Roboto Condensed" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Subjek]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="461" y="152" width="75" height="13" uuid="91493f06-5ba3-42b7-b35b-130fbd2ad192"/>
+				<textElement textAlignment="Center">
+					<font fontName="Roboto Condensed" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pemakaian]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="208" y="152" width="75" height="13" uuid="b625105c-c867-4b5d-b7fc-15e39c003915"/>
+				<textElement textAlignment="Center">
+					<font fontName="Roboto Condensed" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ruangan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="18" y="146" width="19" height="15" uuid="c1cbe2a5-e8af-4dbc-b964-1c400cbd34b8"/>
+				<textElement textAlignment="Center">
+					<font fontName="Roboto Condensed" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="706" y="139" width="80" height="13" uuid="0eeb1a9a-35cf-4623-840b-bef9bfaffcd9"/>
+				<textElement textAlignment="Center">
+					<font fontName="Roboto Condensed" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Status]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="587" y="152" width="75" height="13" uuid="aba6c053-dceb-413a-bd12-dc70daf16981"/>
+				<textElement textAlignment="Center">
+					<font fontName="Roboto Condensed" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Meeting]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="334" y="152" width="75" height="13" uuid="76a776c5-911b-437e-9f30-168ffc81dffc"/>
+				<textElement textAlignment="Center">
+					<font fontName="Roboto Condensed" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pemakaian]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="706" y="152" width="80" height="13" uuid="58989f54-4d4f-48ad-ba03-97f63bd13be6"/>
+				<textElement textAlignment="Center">
+					<font fontName="Roboto Condensed" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pengajuan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="82" y="152" width="74" height="13" uuid="09c2ea12-486a-47a1-b52c-95312684ede8"/>
+				<textElement textAlignment="Center">
+					<font fontName="Roboto Condensed" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Penyelenggara]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="21" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

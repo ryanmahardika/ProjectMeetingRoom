@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <title>Meeting Room</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css"/>
+  <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css"/>
+  <link rel="stylesheet" href="dist/css/AdminLTE.css"/>
+  <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css"/>
+  <link rel="stylesheet" href="bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css"/>
+  <link rel="stylesheet" href="bower_components/bootstrap-daterangepicker/daterangepicker.css"/>
+  <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.print.min.css" media="print"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.print.css" media="print"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css"/>
+  <link href="img/favorite.png" rel="shortcut icon"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"/>
+  <link rel="stylesheet" type="text/css" href="dist/css/jadwal.css"/>
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+  <header th:include="header">
+  </header>
+
+   <aside class="main-sidebar">
+    <section class="sidebar">
+      <ul class="sidebar-menu"><br/><br/>
+        <li class="header" style="font-size: 20px; text-align: center;"><Strong>MENU UTAMA</Strong></li><br/>
+        <li class="treeview">
+          <a th:href="@{/formruangan}">
+            <i class="ion ion-edit"></i>
+            &nbsp; &nbsp;<span>Input Data Ruangan</span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a th:href="@{/dataruangan}">
+            <i class="ion ion-filing"></i>
+            &nbsp; &nbsp;<span>Data Ruangan</span>
+          </a>
+        </li>
+        <li class="active treeview">
+          <a th:href="@{/jadwalruangan}">
+            <i class="ion ion-calendar"></i>
+            &nbsp; &nbsp;<span>Jadwal Ruangan</span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a th:href="@{/daftarpengajuan}">
+            <i class="ion ion-compose"></i>
+            &nbsp; &nbsp;<span>Daftar Pengajuan</span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a th:href="@{/formkerusakan}">
+            <i class="ion ion-document-text"></i>
+            &nbsp; &nbsp;<span>Input Data Kerusakan</span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a th:href="@{/historipemakaian}">
+            <i class="ion ion-stats-bars"></i>
+            &nbsp; &nbsp;<span>Histori Pemakaian</span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a th:href="@{/datakerusakan}">
+            <i class="ion ion-folder"></i>
+            &nbsp; &nbsp;<span>Data Kerusakan</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+  </aside>
+
+  <div class="content-wrapper">
+    <section class="content-header">
+      <h1>
+        Jadwal Ruangan
+      </h1>
+      <ol class="breadcrumb">
+        <li><a th:href="@{home}"><i class="ion ion-home"></i> Home</a></li>
+        <li class="active">Jadwal Ruangan</li>
+      </ol>
+    </section><br/>
+  
+      <div style="padding-left: 10px;padding-right: 10px;padding-bottom: 10px;">
+        <div id="calendar" style="border:5px 5px 5px 5px"></div>
+      </div>
+  </div>
+
+  <footer th:include="footer">
+  </footer>
+</div>
+
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
+<script>
+  $.widget.bridge('uibutton', $.ui.button);
+</script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+<script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<script src="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<script src="dist/js/adminlte.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar-scheduler/1.9.4/scheduler.min.js"></script>
+<script>
+$(document).ready(function() {
+	$('#calendar').fullCalendar({
+		  schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
+		  header: {
+		      left: 'prev,next',
+		      right: 'title'
+		    },
+		  themeSystem: 'jquery-ui',
+		  locale: 'id',
+		  displayEventEnd: true,
+		  timeFormat: 'HH',
+		  defaultView: 'month',
+		  eventLimitText: "lainnya",
+		  eventLimit: true,
+		  events: 'restPengajuanBulan',
+		  eventRender: function(event, element) { 
+	            element.find('.fc-title').append("<br/>" + event.ruanganNama) 
+			}
+		    })
+});
+</script>
+</body>
+</html>

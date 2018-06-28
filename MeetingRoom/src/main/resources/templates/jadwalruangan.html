@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <title>Meeting Room</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css"/>
+  <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css"/>
+  <link rel="stylesheet" href="dist/css/AdminLTE.css"/>
+  <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css"/>
+  <link rel="stylesheet" href="bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css"/>
+  <link rel="stylesheet" href="bower_components/bootstrap-daterangepicker/daterangepicker.css"/>
+  <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css"/>
+  <link href="img/favorite.png" rel="shortcut icon"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"/>
+  <link rel="stylesheet" type="text/css" href="dist/css/jadwal.css"/>
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+  <header th:include="header">
+  </header>
+
+ <aside class="main-sidebar">
+    <section class="sidebar">
+      <ul class="sidebar-menu"><br/><br/>
+        <li class="header" style="font-size: 20px; text-align: center;"><Strong>MENU UTAMA</Strong></li><br/>
+        <li class="treeview">
+          <a th:href="@{/formruangan}">
+            <i class="ion ion-edit"></i>
+            &nbsp; &nbsp;<span>Input Data Ruangan</span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a th:href="@{/dataruangan}">
+            <i class="ion ion-filing"></i>
+            &nbsp; &nbsp;<span>Data Ruangan</span>
+          </a>
+        </li>
+        <li class="active treeview">
+          <a th:href="@{/jadwalruangan}">
+            <i class="ion ion-calendar"></i>
+            &nbsp; &nbsp;<span>Jadwal Ruangan</span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a th:href="@{/daftarpengajuan}">
+            <i class="ion ion-compose"></i>
+            &nbsp; &nbsp;<span>Daftar Pengajuan</span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a th:href="@{/formkerusakan}">
+            <i class="ion ion-document-text"></i>
+            &nbsp; &nbsp;<span>Input Data Kerusakan</span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a th:href="@{/historipemakaian}">
+            <i class="ion ion-stats-bars"></i>
+            &nbsp; &nbsp;<span>Histori Pemakaian</span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a th:href="@{/datakerusakan}">
+            <i class="ion ion-folder"></i>
+            &nbsp; &nbsp;<span>Data Kerusakan</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+  </aside>
+
+  <div class="content-wrapper">
+    <section class="content-header">
+      <h1 style="text-align: center; padding-top: 60px;">
+        Jadwal Ruangan
+      </h1>
+      <ol class="breadcrumb">
+        <li><a th:href="@{home}"><i class="ion ion-home"></i> Home</a></li>
+        <li class="active">Jadwal Ruangan</li>
+      </ol>
+    </section><br/><br/><br/>
+    <section class="content">
+      <div class="row">
+        <div class="col-lg-3 col-xs-6">
+        </div>
+        <div class="col-lg-3 col-xs-6 dua">
+          <div class="small-box bg-green">
+            <div class="inner">
+              <br/><br/><br/>
+              <p>Form Pengajuan</p>
+            </div>
+              <div class="icon">
+                <i class="ion ion-compose"></i>
+              </div>
+            <a href="/formpengajuan" class="small-box-footer">Ke Halaman &nbsp;<i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-xs-6">
+          <div class="small-box bg-yellow">
+            <div class="inner">
+              <br/><br/><br/>
+              <p>Jadwal Ruangan</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-calendar"></i>
+            </div>
+            <a href="/jadwalbulan" class="small-box-footer">Ke Halaman &nbsp;<i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-xs-6">
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer th:include="footer">
+  </footer>
+</div>
+
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
+<script>
+  $.widget.bridge('uibutton', $.ui.button);
+</script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<script src="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<script src="dist/js/adminlte.min.js"></script>
+
+</body>
+</html>

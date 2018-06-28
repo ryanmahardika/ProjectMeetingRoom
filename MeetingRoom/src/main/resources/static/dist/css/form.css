@@ -1,0 +1,54 @@
+.divider{
+	width:15px;
+    height:auto;
+    display:inline-block;
+}
+.jarak{
+	padding-left: 5px;
+	padding-bottom: 5px;
+}
+.tombol{
+	background-color: #ff9933;
+}
+.tombol:hover{
+	background-color: #e67300;
+}
+.formulir{
+	border: 1px solid #000000;
+	display: inline-block;
+	min-width: 100%;
+	max-width: 100%;
+}
+.isi{
+	padding-left: 100px;
+	padding-right: 525px;
+	padding-bottom: 50px;
+	padding-top: 30px;
+}
+legend{
+	padding-left: 10px;
+	min-width: 145px;
+	max-width: 200px;
+}
+.ruangan{
+	min-width: 155px;
+	max-width: 150px;
+}
+table{
+	min-width: 300px;
+	height: 350px;
+}
+textarea{
+	min-width: 155px;
+	min-height: 50px;
+}
+.kapasitas{
+	max-width: 40px;
+	text-align: right; 
+}
+label.fasilitas{
+	min-width: 75px;
+	max-width: 79px;
+	font-weight: 500;
+	padding-left: 3px;
+}

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <title>Meeting Room</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css"/>
+  <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css"/>
+  <link rel="stylesheet" href="dist/css/AdminLTE.css"/>
+  <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css"/>
+  <link rel="stylesheet" href="bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css"/>
+  <link rel="stylesheet" href="bower_components/bootstrap-daterangepicker/daterangepicker.css"/>
+  <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css"/>
+  <link href="img/favorite.png" rel="shortcut icon"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"/>
+  <link rel="stylesheet" href="bower_components/datatables.net-bs/css/dataTables.bootstrap.css"/>
+  <link rel="stylesheet" type="text/css" href="dist/css/histori.css"/>
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+  <header th:include="header">
+  </header>
+
+   <aside class="main-sidebar">
+    <section class="sidebar">
+      <ul class="sidebar-menu"><br/><br/>
+        <li class="header" style="font-size: 20px; text-align: center;"><Strong>MENU UTAMA</Strong></li><br/>
+        <li class="treeview">
+          <a th:href="@{/formruangan}">
+            <i class="ion ion-edit"></i>
+            &nbsp; &nbsp;<span>Input Data Ruangan</span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a th:href="@{/dataruangan}">
+            <i class="ion ion-filing"></i>
+            &nbsp; &nbsp;<span>Data Ruangan</span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a th:href="@{/jadwalruangan}">
+            <i class="ion ion-calendar"></i>
+            &nbsp; &nbsp;<span>Jadwal Ruangan</span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a th:href="@{/daftarpengajuan}">
+            <i class="ion ion-compose"></i>
+            &nbsp; &nbsp;<span>Daftar Pengajuan</span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a th:href="@{/formkerusakan}">
+            <i class="ion ion-document-text"></i>
+            &nbsp; &nbsp;<span>Input Data Kerusakan</span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a th:href="@{/historipemakaian}">
+            <i class="ion ion-stats-bars"></i>
+            &nbsp; &nbsp;<span>Histori Pemakaian</span>
+          </a>
+        </li>
+        <li class="active treeview">
+          <a th:href="@{/datakerusakan}">
+            <i class="ion ion-folder"></i>
+            &nbsp; &nbsp;<span>Data Kerusakan</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+  </aside>
+
+  <div class="content-wrapper">
+    <section class="content-header">
+      <h1>
+        Histori Kerusakan
+      </h1>
+      <ol class="breadcrumb">
+        <li><a th:href="@{home}"><i class="ion ion-home"></i> Home</a></li>
+        <li class="active">Histori Kerusakan</li>
+      </ol>
+    </section><br/>
+
+     <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-body">
+              <div><a th:href="@{datakerusakan}" class="btn btn-fifth btn-flat">Data Kerusakan</a></div></br>
+              <div>
+              <table style="max-width: auto;" border="0" cellspacing="5" cellpadding="5">
+                  <tbody>
+                      <tr>
+                        <td>Tanggal</td>
+                      </tr>
+                      <tr>
+                          <td class="cari"><input name="min" id="min" type="text" class="form-control"></td>
+                          <td class="cari">s/d</td>
+                          <td class="cari"><input name="max" id="max" type="text" class="form-control"></td>
+                          <td><a th:href="@{/downloadpdfkerusakan}" class="btn btn-fifth btn-flat" data-toggle="modal" data-placement="bottom" title="Download PDF"><span class="fa fa-file-pdf-o"></span>&nbsp; Ekspor ke PDF</a></td>
+                      </tr>
+                  </tbody>
+              </table>
+            </div>
+              <div style="height: 10px;"></div>
+              <table width="100%" class="table table-bordered table-striped" id="myTable" cellspacing="0">
+                  <thead>
+                      <tr>
+                      	  <th>ID Kerusakan</th>
+                          <th>Kode Kerusakan</th>
+                          <th>Nama Ruangan</th>
+                          <th>Tanggal Rusak</th>
+                          <th>Deskripsi Kerusakan</th>
+                          <th>Fasilitas Rusak</th>
+                          <th>Status Perbaikan</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr th:each="ldk, iterStat:${listdatakerusakan}">
+                          <td th:text=${ldk.id}></td>
+                          <td th:text=${ldk.kodeKerusakan}></td>
+                          <td th:text=${ldk.ruangan.namaRuangan}></td>
+                          <td th:text=${ldk.tanggalRusak}></td>
+                          <td th:text=${ldk.deskripsi}></td>
+                          <td th:text=${ldk.fasilitasRusak}></td>
+                          <td th:text=${ldk.statusPerbaikan}></td>
+                      </tr>
+                  </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer th:include="footer">
+  </footer>
+</div>
+
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
+<script>
+  $.widget.bridge('uibutton', $.ui.button);
+</script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<script src="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<script src="dist/js/adminlte.min.js"></script>
+<script type="text/javascript" charset="utf8" src="bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" charset="utf8" src="bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
+<script>
+  $(document).ready(function(){
+        $.fn.dataTable.ext.search.push(
+        function (settings, data, dataIndex) {
+            var min = $('#min').datepicker("getDate");
+            var max = $('#max').datepicker("getDate");
+            var startDate = new Date(data[3]);
+            if (min == null && max == null) { return true; }
+            if (min == null && startDate <= max) { return true;}
+            if(max == null && startDate >= min) {return true;}
+            if (startDate <= max && startDate >= min) { return true; }
+            return false;
+        }
+        );
+
+            $("#min").datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
+            $("#max").datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
+            var table = $('#myTable').DataTable();
+
+            // Event listener to the two range filtering inputs to redraw on input
+            $('#min, #max').change(function () {
+                table.draw();
+            });
+        });
+</script>
+
+</body>
+</html>

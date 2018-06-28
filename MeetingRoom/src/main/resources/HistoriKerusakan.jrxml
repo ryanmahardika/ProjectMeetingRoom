@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Kerusakan" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4eedbb89-b4f6-4469-9ab6-f642a1688cf7">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MeetingRoom"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#EEEFF0"/>
+		</conditionalStyle>
+	</style>
+	<style name="Table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+			<topPen lineWidth="1.0" lineColor="#000000"/>
+			<leftPen lineWidth="1.0" lineColor="#000000"/>
+			<bottomPen lineWidth="1.0" lineColor="#000000"/>
+			<rightPen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#CACED0">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#D8D8D8"/>
+		</conditionalStyle>
+	</style>
+	<style name="Table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="tableDataset" uuid="f13e6d36-5148-4ecc-bbe3-3035def80980">
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+	</subDataset>
+	<subDataset name="MR" uuid="8336f97c-c892-4622-b9e8-5ceae7c8d3e4">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MeetingRoom"/>
+		<queryString language="SQL">
+			<![CDATA[SELECT dk.id, dk.kode_kerusakan, r.nama_ruangan, dk.tanggal_rusak, dk.deskripsi, dk.fasilitas_rusak, dk.status_perbaikan FROM datakerusakan dk JOIN ruangan r WHERE dk.id_ruangan = r.id]]>
+		</queryString>
+		<field name="id" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="id"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="datakerusakan"/>
+		</field>
+		<field name="kode_kerusakan" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="kode_kerusakan"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="datakerusakan"/>
+		</field>
+		<field name="nama_ruangan" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="nama_ruangan"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="ruangan"/>
+		</field>
+		<field name="tanggal_rusak" class="java.sql.Date">
+			<property name="com.jaspersoft.studio.field.label" value="tanggal_rusak"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="datakerusakan"/>
+		</field>
+		<field name="deskripsi" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="deskripsi"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="datakerusakan"/>
+		</field>
+		<field name="fasilitas_rusak" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="fasilitas_rusak"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="datakerusakan"/>
+		</field>
+		<field name="status_perbaikan" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="status_perbaikan"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="datakerusakan"/>
+		</field>
+		<group name="id">
+			<groupExpression><![CDATA[$F{id}]]></groupExpression>
+		</group>
+		<group name="kode_kerusakan">
+			<groupExpression><![CDATA[$F{kode_kerusakan}]]></groupExpression>
+		</group>
+		<group name="nama_ruangan">
+			<groupExpression><![CDATA[$F{nama_ruangan}]]></groupExpression>
+		</group>
+		<group name="tanggal_rusak">
+			<groupExpression><![CDATA[$F{tanggal_rusak}]]></groupExpression>
+		</group>
+		<group name="deskripsi">
+			<groupExpression><![CDATA[$F{deskripsi}]]></groupExpression>
+		</group>
+		<group name="fasilitas_rusak">
+			<groupExpression><![CDATA[$F{fasilitas_rusak}]]></groupExpression>
+		</group>
+		<group name="status_perbaikan">
+			<groupExpression><![CDATA[$F{status_perbaikan}]]></groupExpression>
+		</group>
+	</subDataset>
+	<queryString language="SQL">
+		<![CDATA[SELECT dk.id, dk.kode_kerusakan, r.nama_ruangan, dk.tanggal_rusak, dk.deskripsi, dk.fasilitas_rusak, dk.status_perbaikan FROM datakerusakan dk JOIN ruangan r WHERE dk.id_ruangan = r.id]]>
+	</queryString>
+	<field name="id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="datakerusakan"/>
+	</field>
+	<field name="kode_kerusakan" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="kode_kerusakan"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="datakerusakan"/>
+	</field>
+	<field name="nama_ruangan" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nama_ruangan"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="ruangan"/>
+	</field>
+	<field name="tanggal_rusak" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="tanggal_rusak"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="datakerusakan"/>
+	</field>
+	<field name="deskripsi" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="deskripsi"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="datakerusakan"/>
+	</field>
+	<field name="fasilitas_rusak" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="fasilitas_rusak"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="datakerusakan"/>
+	</field>
+	<field name="status_perbaikan" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="status_perbaikan"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="datakerusakan"/>
+	</field>
+	<group name="Gruppo1">
+		<groupExpression><![CDATA[$F{id}]]></groupExpression>
+		<groupHeader>
+			<band height="50">
+				<rectangle>
+					<reportElement x="0" y="-56" width="554" height="45" forecolor="#FFFFFF" backcolor="#E1E1D0" uuid="67e3ef86-0ec2-403e-aae5-9e9e586fb564"/>
+				</rectangle>
+				<textField isBlankWhenNull="true">
+					<reportElement positionType="Float" x="4" y="-45" width="22" height="20" forecolor="#000000" uuid="7704da8a-15f5-49a1-9c4c-5fa682bd4652"/>
+					<textElement textAlignment="Center">
+						<font fontName="Roboto Condensed" size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="49" y="-45" width="30" height="20" uuid="a7c4834a-7073-48a7-a5a5-337d0a47d7f2"/>
+					<textElement textAlignment="Center">
+						<font fontName="Roboto Condensed"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{kode_kerusakan}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="101" y="-45" width="80" height="20" uuid="52c62626-c78e-407c-9fd5-5c694abc386b"/>
+					<textElement textAlignment="Center">
+						<font fontName="Roboto Condensed"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{nama_ruangan}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="197" y="-45" width="70" height="20" uuid="55ebee26-efa1-4b1e-83ab-60a51d5b61e3"/>
+					<textElement textAlignment="Center">
+						<font fontName="Roboto Condensed"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{tanggal_rusak}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="374" y="-45" width="80" height="30" uuid="fb031a69-a2fe-4010-ac2c-fbfab8078e31"/>
+					<textElement textAlignment="Center">
+						<font fontName="Roboto Condensed"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{deskripsi}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="277" y="-45" width="90" height="20" uuid="f93bd6c6-db4f-4135-970d-a6938aefd9a3"/>
+					<textElement textAlignment="Center">
+						<font fontName="Roboto Condensed"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{fasilitas_rusak}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="465" y="-45" width="84" height="20" uuid="f314394e-04b2-4fa3-b883-d2dd878730e7"/>
+					<textElement textAlignment="Center">
+						<font fontName="Roboto Condensed"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{status_perbaikan}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band>
+				<property name="local_mesure_unitheight" value="pixel"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="kode_kerusakan">
+		<groupExpression><![CDATA[$F{kode_kerusakan}]]></groupExpression>
+	</group>
+	<group name="nama_ruangan">
+		<groupExpression><![CDATA[$F{nama_ruangan}]]></groupExpression>
+	</group>
+	<group name="tanggal_rusak">
+		<groupExpression><![CDATA[$F{tanggal_rusak}]]></groupExpression>
+	</group>
+	<group name="deskripsi">
+		<groupExpression><![CDATA[$F{deskripsi}]]></groupExpression>
+	</group>
+	<group name="fasilitas_rusak">
+		<groupExpression><![CDATA[$F{fasilitas_rusak}]]></groupExpression>
+	</group>
+	<group name="status_perbaikan">
+		<groupExpression><![CDATA[$F{status_perbaikan}]]></groupExpression>
+	</group>
+	<title>
+		<band height="157" splitType="Stretch">
+			<image hAlign="Center">
+				<reportElement x="5" y="-11" width="92" height="85" uuid="94883631-a913-43e2-b182-ab8d77d0181e"/>
+				<imageExpression><![CDATA["C:/Users/RyanMahardika/Downloads/community-council-logo.png"]]></imageExpression>
+			</image>
+			<rectangle>
+				<reportElement mode="Opaque" x="0" y="85" width="556" height="58" printWhenGroupChanges="Gruppo1" forecolor="#FCFAFA" backcolor="#FF9933" uuid="c412f776-9be5-47ba-8889-d730aafecfb1"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="360" y="54" width="60" height="15" uuid="0f86baff-6386-4f3f-b3fe-2388707babe8"/>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Center">
+					<font fontName="Roboto Condensed" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tanggal :]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="420" y="54" width="129" height="15" uuid="bb10dbe1-0a4f-4722-9953-c163b63cf979"/>
+				<textElement textAlignment="Center">
+					<font fontName="Roboto Condensed" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="103" y="8" width="210" height="25" uuid="e622555d-198b-4ccd-a4a1-c59c53304058">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Roboto Condensed" size="19" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MeetingRoom]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="103" y="35" width="210" height="15" uuid="b8cc42fd-b569-497d-834d-7e854040ad18"/>
+				<textElement>
+					<font fontName="Roboto Condensed" size="11"/>
+				</textElement>
+				<text><![CDATA[Laporan Histori Kerusakan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="107" width="19" height="15" uuid="7139521a-781a-42cd-87a2-d606e80207d2"/>
+				<textElement textAlignment="Center">
+					<font fontName="Roboto Condensed" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="195" y="113" width="75" height="13" uuid="38a06f9a-661d-4adc-a00a-351d8e646aab"/>
+				<textElement textAlignment="Center">
+					<font fontName="Roboto Condensed" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Rusak]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="377" y="100" width="75" height="13" uuid="b6d40be8-9da8-4033-a780-fad0ad9094ff"/>
+				<textElement textAlignment="Center">
+					<font fontName="Roboto Condensed" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Deskripsi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="467" y="100" width="80" height="13" uuid="467f3b4e-db29-4eb1-9a00-9817e5ee0aa0"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Status]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="285" y="100" width="75" height="13" uuid="cdbec00e-3dc1-4ec3-85d6-1bf40895b589"/>
+				<textElement textAlignment="Center">
+					<font fontName="Roboto Condensed" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fasilitas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="467" y="113" width="80" height="13" uuid="84466a11-2469-40e4-b6e6-8d7e3c946dff"/>
+				<textElement textAlignment="Center">
+					<font fontName="Roboto Condensed" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Perbaikan]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="149" width="556" height="1" uuid="c48d2bca-8889-429d-9106-f372d59f6255"/>
+			</line>
+			<staticText>
+				<reportElement x="195" y="100" width="75" height="13" uuid="0704493f-bb24-4274-90f0-5ba3ba2378ee"/>
+				<textElement textAlignment="Center">
+					<font fontName="Roboto Condensed" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tanggal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="285" y="113" width="75" height="13" uuid="bb074ff7-5022-4186-bce6-d4a5bd8a4bcd"/>
+				<textElement textAlignment="Center">
+					<font fontName="Roboto Condensed" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Rusak]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="377" y="113" width="75" height="13" uuid="43af2058-ce0f-49a3-97ab-2e0b8f738a3c"/>
+				<textElement textAlignment="Center">
+					<font fontName="Roboto Condensed" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Kerusakan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="104" y="113" width="75" height="13" uuid="60e673cf-6e77-45d7-bc5c-8480d08df2f4"/>
+				<textElement textAlignment="Center">
+					<font fontName="Roboto Condensed" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ruangan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="104" y="100" width="75" height="13" uuid="f34b5b83-8eaa-44fa-b242-44681629b909"/>
+				<textElement textAlignment="Center">
+					<font fontName="Roboto Condensed" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nama]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="31" y="100" width="67" height="13" uuid="1a9f2070-41a1-48b3-9533-f64c6eb10077"/>
+				<textElement textAlignment="Center">
+					<font fontName="Roboto Condensed" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Kode]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="31" y="113" width="67" height="13" uuid="f463eb88-f871-4227-acdd-a6c680160428"/>
+				<textElement textAlignment="Center">
+					<font fontName="Roboto Condensed" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Kerusakan]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="63">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+			<line>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="-78" width="556" height="1" uuid="0d229bb9-0e05-4477-bde8-e6bf85ef2c0e"/>
+			</line>
+		</band>
+	</columnHeader>
+</jasperReport>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <title>Meeting Room</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css"/>
+  <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css"/>
+  <link rel="stylesheet" href="dist/css/AdminLTE.css"/>
+  <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css"/>
+  <link rel="stylesheet" href="bower_components/morris.js/morris.css"/>
+  <link rel="stylesheet" href="bower_components/jvectormap/jquery-jvectormap.css"/>
+  <link rel="stylesheet" href="bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css"/>
+  <link rel="stylesheet" href="bower_components/bootstrap-daterangepicker/daterangepicker.css"/>
+  <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css"/>
+  <link href="img/favorite.png" rel="shortcut icon"/>
+  <link rel="stylesheet" href="bower_components/select2/dist/css/select2.css"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"/>
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="row">
+    <div class="col-lg-12 col-xs-6">
+   	   <section class="content-header">
+          <h1 style="text-align: center;">
+            Konfirmasi Perbaikan
+          </h1>
+       </section><br/>
+    </div>
+
+    <section class="content">
+      <div class="row">
+        <div class="col-lg-12 col-xs-6">
+          <div class="box box-primary">
+            <form role="form" th:action="@{konfirmasiperbaikan}" method="post">
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="exampleId">ID Kerusakan</label>
+                  <input type="text" name="Id" class="form-control" th:value="${datakerusakan.id}" style="max-width: 10%" readonly/>
+                </div>
+                <div class="form-group">
+                  <label style="display:none" for="exampleKaryawan">Nama Penyelenggara</label>
+                    <input type="text" name="karyawan" class="form-control" th:value="${datakerusakan.karyawan.id}" style="display:none"/>
+                    <input type="text" name="karyawan" class="form-control" th:value="${datakerusakan.karyawan.nama}" style="display:none"/>	
+                </div>
+                <div class="form-group">
+                  <label for="exampleRuangan">Ruangan</label>
+                    <input type="text" name="ruangan" class="form-control" th:value="${datakerusakan.ruangan.id}" style="display:none"/>
+                    <input type="text" name="ruangan" class="form-control" th:value="${datakerusakan.ruangan.namaRuangan}" style="max-width: 30%" readonly/>
+                </div>
+                <div class="form-group">
+                  <label for="exampleKodeKerusakan">Kode Kerusakan</label>
+                  <input type="text" name="kodeKerusakan" id="kodeKerusakan" class="form-control" th:value="${datakerusakan.kodeKerusakan}" style="max-width: 30%" readonly/>
+                </div>
+                <div class="form-group">
+                  <label for="exampleTanggalRusak">Tanggal Rusak</label>
+                  <input type="text" name="tanggalRusak" id="tanggalRusak" class="form-control" th:value="${#dates.format(datakerusakan.tanggalRusak,'MM/dd/yyyy')}" style="max-width: 30%" readonly/>
+                </div>
+                <div class="form-group">
+                  <label for="exampleFasilitasRusak">Fasilitas Rusak</label>
+                  <textarea name="fasilitasRusak" id="exampleFasilitasRusak" class="form-control" th:text="${datakerusakan.fasilitasRusak}" style="max-width: 100%" readonly></textarea> 
+                </div>
+                <div class="form-group">
+                  <label style="display:none" for="exampleDeskripsiKerusakan">Deskripsi Kerusakan</label>
+                  <textarea class="form-control" name="deskripsi" id="exampleDeskripsiKerusakan" th:text="${datakerusakan.deskripsi}" style="max-width: 100%; display:none"></textarea> 
+                </div>
+                <div class="form-group">
+                  <label for="exampleStatusPerbaikan">Status Perbaikan</label></br>
+                  <input type="radio" name="statusPerbaikan" value="Belum Diperbaiki" th:checked="${datakerusakan.statusPerbaikan=='Belum Diperbaiki'}" required/>&nbsp;&nbsp;Belum Diperbaiki &nbsp;
+                  <input type="radio" name="statusPerbaikan" value="Selesai Diperbaiki" th:checked="${datakerusakan.statusPerbaikan=='Selesai Diperbaiki'}"/>&nbsp;&nbsp;Selesai Diperbaiki
+                </div>
+              </div>
+              <div class="box-footer">
+                <button type="submit" class="btn btn-fifth btn-flat">Submit</button>&nbsp;&nbsp;
+                <button type="button" class="btn btn-fifth btn-flat" data-dismiss="modal">&nbsp;&nbsp;Batal&nbsp;&nbsp;&nbsp;</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+</div>
+
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
+<script>
+  $.widget.bridge('uibutton', $.ui.button);
+</script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="bower_components/raphael/raphael.min.js"></script>
+<script src="bower_components/morris.js/morris.min.js"></script>
+<script src="bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+<script src="plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+<script src="plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+<script src="bower_components/jquery-knob/dist/jquery.knob.min.js"></script>
+<script src="bower_components/moment/min/moment.min.js"></script>
+<script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<script src="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script src="bower_components/fastclick/lib/fastclick.js"></script>
+<script src="dist/js/adminlte.min.js"></script>
+<script src="dist/js/pages/dashboard.js"></script>
+<script src="dist/js/demo.js"></script>
+<script src="bower_components/select2/dist/js/select2.full.js"></script>
+
+<script>
+$(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <title>Meeting Room</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css"/>
+  <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css"/>
+  <link rel="stylesheet" href="dist/css/AdminLTE.css"/>
+  <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css"/>
+  <link rel="stylesheet" href="bower_components/morris.js/morris.css"/>
+  <link rel="stylesheet" href="bower_components/jvectormap/jquery-jvectormap.css"/>
+  <link rel="stylesheet" href="bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css"/>
+  <link rel="stylesheet" href="bower_components/bootstrap-daterangepicker/daterangepicker.css"/>
+  <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css"/>
+  <link href="img/favorite.png" rel="shortcut icon"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"/>
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+  <header th:include="header">
+  </header>
+
+    <aside class="main-sidebar">
+    <section class="sidebar">
+      <ul class="sidebar-menu"><br/><br/>
+        <li class="header" style="font-size: 20px; text-align: center;"><Strong>MENU UTAMA</Strong></li><br/>
+        <li class="treeview">
+          <a th:href="@{/formruangan}">
+            <i class="ion ion-edit"></i>
+            &nbsp; &nbsp;<span>Input Data Ruangan</span>
+          </a>
+        </li>
+        <li class="active treeview">
+          <a th:href="@{/dataruangan}">
+            <i class="ion ion-filing"></i>
+            &nbsp; &nbsp;<span>Data Ruangan</span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a th:href="@{/jadwalruangan}">
+            <i class="ion ion-calendar"></i>
+            &nbsp; &nbsp;<span>Jadwal Ruangan</span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a th:href="@{/daftarpengajuan}">
+            <i class="ion ion-compose"></i>
+            &nbsp; &nbsp;<span>Daftar Pengajuan</span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a th:href="@{/formkerusakan}">
+            <i class="ion ion-document-text"></i>
+            &nbsp; &nbsp;<span>Input Data Kerusakan</span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a th:href="@{/historipemakaian}">
+            <i class="ion ion-stats-bars"></i>
+            &nbsp; &nbsp;<span>Histori Pemakaian</span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a th:href="@{/datakerusakan}">
+            <i class="ion ion-folder"></i>
+            &nbsp; &nbsp;<span>Data Kerusakan</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+  </aside>
+
+  <div class="content-wrapper">
+     <div class="row">
+        <div class="col-lg-3 col-xs-6">
+        </div>
+        <div class="col-lg-6 col-xs-6">
+          <section class="content-header">
+          <h1 style="text-align: center;">
+            Ubah Data Ruangan
+          </h1>
+          </section><br/>
+        </div>
+        <div class="col-lg-3 col-xs-6">
+          <section class="content-header">
+            <ol class="breadcrumb">
+              <li><a th:href="@{home}"><i class="ion ion-home"></i> Home</a></li>
+              <li class="active">Ubah Data Ruangan</li>
+            </ol>
+          </section>
+        </div>
+      </div>
+    <section class="content">
+      <div class="row">
+        <div class="col-lg-2 col-xs-6">
+        </div>
+        <div class="col-lg-8 col-xs-6">
+          <div class="box box-primary">
+            <form method="post" th:action="@{updateruangan}">
+              <div class="box-body">
+              	<div class="form-group">
+                  <label for="exampleId">ID Ruangan</label>
+                  <input type="text" name="Id" class="form-control" th:value="${ruangan.id}" style="max-width: 10%" readonly/>
+                </div>
+                <div class="form-group">
+                  <label for="exampleNamaRuangan">Nama Ruangan</label>
+                  <input type="text" name="namaRuangan" class="form-control" th:value="${ruangan.namaRuangan}" style="max-width: 30%" required/>
+                </div>
+                <div class="form-group">
+                  <label for="exampleKapasitas">Kapasitas</label>
+                  <input type="number" name="kapasitas" class="form-control" min="1" th:value="${ruangan.kapasitas}" style="max-width: 10%; text-align:right;" required/> 
+                </div>
+                <div class="form-group">
+                  <label for="exampleFasilitas">Fasilitas</label>
+                  <table>
+                    <tr>
+                      <td class="fasilitas">
+                        <input type="checkbox" name="fasilitasUtama" value="Proyektor" th:checked="${ruangan.fasilitasUtama.contains('Proyektor')}">&nbsp;Proyektor&nbsp;&nbsp;
+                        <input type="checkbox" name="fasilitasUtama" value="Meja" th:checked="${ruangan.fasilitasUtama.contains('Meja')}">&nbsp;Meja&nbsp;&nbsp;
+                        <input type="checkbox" name="fasilitasUtama" value="Proyektor Screen" th:checked="${ruangan.fasilitasUtama.contains('Proyektor Screen')}">&nbsp;Proyektor Screen&nbsp;&nbsp;
+                        <input type="checkbox" name="fasilitasUtama" value="Kursi" th:checked="${ruangan.fasilitasUtama.contains('Kursi')}">&nbsp;Kursi
+                      </td>
+                    </tr>
+                  </table> 
+                </div>
+                <div class="form-group">
+                  <label for="exampleKeterangan">Keterangan</label></br>
+                  <input type="radio" name="keterangan" value="Aktif" th:checked="${ruangan.keterangan=='Aktif'}" required/>&nbsp;&nbsp;Aktif &nbsp;
+                  <input type="radio" name="keterangan" value="Non Aktif" th:checked="${ruangan.keterangan=='Non Aktif'}"/>&nbsp;&nbsp;Non Aktif
+                </div>
+                <div class="form-group">
+                  <label for="exampleStatusRuangan">Status Ruangan</label></br>
+                  <input type="radio" name="statusRuangan" value="Tersedia" th:checked="${ruangan.statusRuangan=='Tersedia'}" required/>&nbsp;&nbsp;Tersedia &nbsp;
+                  <input type="radio" name="statusRuangan" value="Tidak Tersedia" th:checked="${ruangan.statusRuangan=='Tidak Tersedia'}"/>&nbsp;&nbsp;Tidak Tersedia
+                </div>
+                <div class="form-group">
+                  <label for="exampleFasilitasTambahan">Fasilitas Tambahan</label>
+                  <textarea class="form-control" name="fasilitasTambahan" th:text="${ruangan.fasilitasTambahan}" style="max-width: 100%"></textarea> 
+                </div>
+              </div>
+              <div class="box-footer">
+                <button type="submit" class="btn btn-fifth btn-flat">Submit</button>&nbsp;&nbsp;
+                <a th:href="@{dataruangan}" class="btn btn-fifth btn-flat">&nbsp;&nbsp;Batal&nbsp;&nbsp;&nbsp;</a>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-lg-2 col-xs-6">
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer th:include="footer">
+  </footer>
+</div>
+
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
+<script>
+  $.widget.bridge('uibutton', $.ui.button);
+</script>
+
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="bower_components/raphael/raphael.min.js"></script>
+<script src="bower_components/morris.js/morris.min.js"></script>
+<script src="bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+<script src="plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+<script src="plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+<script src="bower_components/jquery-knob/dist/jquery.knob.min.js"></script>
+<script src="bower_components/moment/min/moment.min.js"></script>
+<script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<script src="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script src="bower_components/fastclick/lib/fastclick.js"></script>
+<script src="dist/js/adminlte.min.js"></script>
+<script src="dist/js/pages/dashboard.js"></script>
+<script src="dist/js/demo.js"></script>
+
+</body>
+</html>

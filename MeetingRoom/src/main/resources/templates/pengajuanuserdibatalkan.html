@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <title>Meeting Room</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css"/>
+  <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css"/>
+  <link rel="stylesheet" href="dist/css/AdminLTE.css"/>
+  <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css"/>
+  <link rel="stylesheet" href="bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css"/>
+  <link rel="stylesheet" href="bower_components/bootstrap-daterangepicker/daterangepicker.css"/>
+  <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css"/>
+  <link href="img/favorite.png" rel="shortcut icon"/>
+  <link rel="stylesheet" href="bower_components/select2/dist/css/select2.css"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"/>
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="row">
+    <div class="col-lg-12 col-xs-6">
+   	   <section class="content-header">
+          <h1 style="text-align: center;">
+            Konfimasi Pengajuan Dibatalkan
+          </h1>
+       </section><br/>
+    </div>
+
+    <section class="content">
+      <div class="row">
+        <div class="col-lg-12 col-xs-6">
+          <div class="box box-primary">
+            <form role="form" th:action="@{pengajuanuserdibatalkan}" method="post">
+              <div class="box-body">
+                <div class="form-group">
+                  <label style="display:none" for="exampleId">ID Pengajuan</label>
+                  <input type="text" name="Id" class="form-control" th:value="${datapengajuan.id}" style="max-width: 10%; display:none"/>
+                </div>
+                <div class="form-group">
+                  <label for="exampleKaryawan">Nama Penyelenggara</label>
+                    <input type="text" name="karyawan" class="form-control" th:value="${datapengajuan.karyawan.id}" style="display:none"/>
+                    <input type="text" name="karyawan" class="form-control" th:value="${datapengajuan.karyawan.nama}" readonly/>	
+                </div>
+                <div class="form-group">
+                  <label style="display:none" for="exampleRuangan">Ruangan</label>
+                  <select name="ruangan" id="exampleNamaRuangan" class="form-control" style="max-width: 30%; display:none">
+                  	<option th:each="ruangan : ${listruangan}" th:value="${ruangan.id}" th:selected="${datapengajuan.ruangan.id==ruangan.id}" th:text="${ruangan.namaRuangan}"></option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label style="display:none" for="exampleCreateDate">Create Date</label>
+                  <input type="text" name="createDate" id="createDate" class="form-control" th:value="${#dates.format(datapengajuan.createDate,'MM/dd/yyyy')}" style="max-width: 30%; display:none"/> 
+                </div>
+                <div class="form-group">
+                  <label for="exampleTanggal">Tanggal Pemakaian</label>
+                  <input type="text" name="tanggalPemakaian" id="tglPemakaian" class="form-control" th:value="${#dates.format(datapengajuan.tanggalPemakaian,'MM/dd/yyyy')}" style="max-width: 30%;"/> 
+                </div>
+                <div class="form-group">
+                  <label style="display:none" for="exampleWaktu">Waktu Pemakaian</label>
+                  <select name="mulai" id="exampleMulai" class="form-control" style="display:none; max-width: 15%">
+                  	<option th:each="waktu : ${T(com.example.mr.model.PilihWaktu).values()}" th:value="${waktu}" th:selected="${#strings.toString(waktu)==datapengajuan.mulai}" th:text="${waktu}"></option>
+                  </select>
+                  <label style="display:none"> &nbsp;s/d&nbsp;</label>
+                  <select name="selesai" id="exampleSelesai" class="form-control" style="display:none; max-width: 15%">
+                  	<option th:each="waktu : ${T(com.example.mr.model.PilihWaktu).values()}" th:value="${waktu}" th:selected="${#strings.toString(waktu)==datapengajuan.selesai}" th:text="${waktu}"></option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Peserta</label>
+                  <select name="peserta" class="form-control select2 select2-hidden-accessible" multiple="multiple" data-placeholder="Peserta" style="width: 100%;">
+					<option th:each="karyawan : ${listkaryawan}" th:selected="${karyawan.isPeserta(datapengajuan.id)}" th:value="${karyawan.id}" th:text="${karyawan.nama}"></option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="exampleSubjek">Subjek Meeting</label>
+                  <input class="form-control" type="text" name="subjekMeeting" id="exampleSubjek" th:value="${datapengajuan.subjekMeeting}" required readonly/> 
+                </div>
+                <div class="form-group">
+                  <label for="exampleDeskripsi">Deskripsi</label>
+                  <textarea class="form-control" name="deskripsi" id="exampleDeskripsi" th:text="${datapengajuan.deskripsi}" style="max-width: 100%" readonly></textarea> 
+                </div>
+                <div class="form-group">
+                <label for="exampleStatusPengajuan">Status Pengajuan</label></br>
+                  <input type="radio" name="statusPengajuan" value="Dibatalkan" required/>&nbsp;&nbsp;Dibatalkan
+                </div>
+              </div>
+              <div class="box-footer">
+                <button type="submit" class="btn btn-fifth btn-flat">Submit</button>&nbsp;&nbsp;
+                <button type="button" class="btn btn-fifth btn-flat" data-dismiss="modal">&nbsp;&nbsp;Batal&nbsp;&nbsp;&nbsp;</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+</div>
+
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
+<script>
+  $.widget.bridge('uibutton', $.ui.button);
+</script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<script src="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<script src="dist/js/adminlte.min.js"></script>
+<script src="bower_components/select2/dist/js/select2.full.js"></script>
+<script>
+$(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+});
+</script>
+
+</body>
+</html>

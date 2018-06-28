@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <title>Meeting Room</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css"/>
+  <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css"/>
+  <link rel="stylesheet" href="dist/css/AdminLTE.css"/>
+  <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css"/>
+  <link rel="stylesheet" href="bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css"/>
+  <link rel="stylesheet" href="bower_components/bootstrap-daterangepicker/daterangepicker.css"/>
+  <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css"/>
+  <link rel="stylesheet" href="bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css"/>
+  <link href="img/favorite.png" rel="shortcut icon"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"/>
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+  <header th:include="header">
+  </header>
+
+ <aside class="main-sidebar">
+    <section class="sidebar">
+      <ul class="sidebar-menu"><br/><br/>
+        <li class="header" style="font-size: 20px; text-align: center;"><Strong>MENU UTAMA</Strong></li><br/>
+        <li>
+          <a th:href="@{jadwalruanganuser}">
+            <i class="ion ion-calendar"></i>
+            &nbsp; &nbsp;<span>Jadwal Ruangan</span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a th:href="@{ruangan}">
+            <i class="ion ion-filing"></i>
+            &nbsp; &nbsp;<span>Data Ruangan</span>
+          </a>
+        </li>
+        <li class="treeview active">
+          <a th:href="@{#}">
+            <i class="ion ion-compose"></i>
+            &nbsp; &nbsp;<span>Daftar Pengajuan</span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a th:href="@{histori}">
+            <i class="ion ion-stats-bars"></i>
+            &nbsp; &nbsp;<span>Histori Pemakaian</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+  </aside>
+
+  <div class="content-wrapper">
+    <section class="content-header">
+      <h1>
+        Daftar Pengajuan Ruangan
+      </h1>
+      <ol class="breadcrumb">
+        <li><a th:href="@{home}"><i class="ion ion-home"></i> Home</a></li>
+        <li class="active">Daftar Pengajuan Ruangan</li>
+      </ol>
+    </section><br/>
+
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-body">
+              <table id="myTable" class="table table-bordered table-striped" style="width:100%">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Ruangan</th>
+                  <th>Tanggal Pemakaian</th>
+                  <th>Jam Pemakaian</th>
+                  <th>Subjek Meeting</th>
+                  <th>Waktu Pengajuan</th>
+                  <th>Status</th>
+                  <th>Ubah/Batal</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr th:each="ldp, iterStat:${listdatapengajuan}">
+                  <td></td>
+                  <td th:text=${ldp.ruangan.namaRuangan}></td>
+                  <td th:text=${ldp.tanggalPemakaian}></td>
+                  <td th:text="|${ldp.mulai} - ${ldp.selesai}|"></td>
+                  <td th:text=${ldp.subjekMeeting} data-toggle="modal" data-target="#dialogPeserta"></td>
+                  <td th:text=${ldp.createDate}></td>
+                  <td th:text=${ldp.statusPengajuan}></td>
+                  <td>
+                    <a th:href="@{update(id=${ldp.id})}" class="btn btn-fifth btn-flat" data-toggle="modal" data-placement="bottom" title="Ubah"><i class="ion ion-refresh"></i></a>
+                    <a th:href="@{pengajuanuserdibatalkan(id=${ldp.id})}" class="btn btn-fourth btn-flat" data-toggle="modal" data-placement="bottom" title="Batal" data-target="#dialogBatal"><i class="ion ion-close-round"></i></a>
+                  </td>
+                </tr>
+              </tbody>
+            </table><br/><br/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div id="dialogBatal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+      <div class="modal-content">
+      </div>
+ </div>
+</div>
+
+<footer th:include="footer"></footer>
+</div>
+
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
+<script>
+  $.widget.bridge('uibutton', $.ui.button);
+</script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<script src="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<script src="dist/js/adminlte.min.js"></script> 
+<script type="text/javascript" charset="utf8" src="bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" charset="utf8" src="bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script>
+$(document).ready(function() {
+    var t = $('#myTable').DataTable( {
+        "columnDefs": [ {
+            "searchable": false,
+            "orderable": false,
+            "targets": 0
+        } ],
+            "columnDefs": [{ 
+          	  "orderable": false,
+      		  "targets": 7 
+      		  }],
+        "order": [ 5, 'desc']
+    } );
+ 
+    t.on( 'order.dt search.dt', function () {
+        t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+            cell.innerHTML = i+1;
+        } );
+    } ).draw();
+} );
+</script>
+</body>
+</html>
